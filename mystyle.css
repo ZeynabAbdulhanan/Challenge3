@@ -1,4 +1,40 @@
 body{
     box-sizing: border-box; 
-    background-color: #917775;
+    background-color: #0a9fe8;
 }
+
+.logo{
+    background-color: #0a9fe8;
+    width: auto;
+    height: 0 auto;
+    border-bottom: solid 1px #098fd0; 
+}
+
+.icon{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: none;
+    margin: 4px;
+    color: white;
+    position: relative;
+}
+
+.icon i{
+    line-height: 80px;
+    font-size: 32px;
+}
+
+.icon:hover i{
+    transform: scale(1.5);
+    color: #f1f1f1;
+}
+
+.logo h2{
+    color: white;
+    display: inline-block;
+}
+
+
+
+
