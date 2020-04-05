@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 		<link type="text/css" href="mystyle.css" rel="stylesheet"/>  
         <script src="https://kit.fontawesome.com/bd9010d42c.js" crossorigin="anonymous"></script>
-        <script src="challenge3script.js"></script>
+        <script src="main.js"></script>
 	</head>
     <body> 
         <section class="grid_container">
@@ -21,16 +21,16 @@
                 </div>
             </nav>
             <br>
-            <section id="weather">
-                <form>
-                    <fieldset>
-                        <legend>Huidig weer</legend>
-                        <label for="city">Stad:</label>
-                        <input type="text" name="stad" id="city"/>
-                        <input type="button" id="getWeather" value="Het huidig weer"/> 
-                    </fieldset>
-                </form>
-            </section>
+		    <article id="weather"></article>
+		    <form>
+                <fieldset>
+                    <legend>Get current weather</legend>
+                    <label for="city">City:</label>
+                    <input type="text" name="city" id="city" />
+                    <input type="button" id="getWeather" value="get current weather" />
+                </fieldset>
+	    	</form>
+  
         </section>
     </body>
 </html>

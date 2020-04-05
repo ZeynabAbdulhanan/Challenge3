@@ -12,6 +12,13 @@ body{
     padding: 5px;
 }
 
+#weather {
+	background-color: #222222;
+	width: 200px;
+	padding: 6px;
+	text-align: center;
+}
+
 .icon{
     display: inline-block;
     width: 60px;
