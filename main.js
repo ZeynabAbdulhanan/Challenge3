@@ -1,7 +1,9 @@
 function getAPIdata() {
 
 	// construct request
-	var request = 'https://api.openweathermap.org/data/2.5/weather?appid=671ed302134d547adf8e79c854664915&q=Utrecht,nl';
+	var url = 'https://api.openweathermap.org/data/2.5/weather';
+    var apikey = '671ed302134d547adf8e79c854664915&q=Utrecht,nl';
+    var city = document.getElementById('city').value; 
 
 	// get current weather
 	fetch(request)	

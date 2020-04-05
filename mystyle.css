@@ -37,15 +37,22 @@ body{
     display: inline-block;
 }
 
+legend{
+    color: white;
+    font-size: 22px;
+}
 fieldset{
     width: auto;
     height: 100px; 
     margin: 5px;
-    padding: 5px;
+    padding: 20px;
     border-radius: 3px;
-    color: #098fd0;
+    border-color: #098fd0;
 }
 
+input{
+    
+}
 
 @media only screen and (min-width:600px){
     
