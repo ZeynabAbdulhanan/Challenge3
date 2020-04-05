@@ -29,7 +29,6 @@ function getAPIdata() {
 	});
 }
 
-
 function onAPISucces(response) {
 	// get type of weather in string format
 	var type = response.weather[0].description;
@@ -39,17 +38,12 @@ function onAPISucces(response) {
 
 	// render weather in DOM
 	var weatherBox = document.getElementById('weather');
-	weatherBox.innerHTML = degC + '&#176;C <br>' + type;
+	weatherBox.innerHTML = name+ degC + '&#176;C <br>' + type;
 }
 
 
 function onAPIError(error) {
 	console.error('Fetch request failed', error);
 	var weatherBox = document.getElementById('weather');
-	weatherBox.innerHTML = 'No weather data available <br /> Did you enter a valid city?'; 
+	weatherBox.innerHTML = 'Geen weergegevens beschikbaar <bro /> Heb je een geldige stad ingevoerd?'; 
 }
-
-document.getElementById('getWeather').onclick = function(){
-	// init data stream
-	getAPIdata();
-};

@@ -1,6 +1,7 @@
 body{
     box-sizing: border-box; 
-    background-color: #0a9fe8;
+    background-color: none;
+   
 }
 
 .logo{
@@ -13,10 +14,13 @@ body{
 }
 
 #weather {
-	background-color: #222222;
-	width: 200px;
-	padding: 6px;
+	background-color:none;
+	width: auto;
+    height: 60px;
+	padding: 10px;
+    margin: 10px;
 	text-align: center;
+    overflow: hidden;
 }
 
 .icon{

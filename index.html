@@ -21,16 +21,15 @@
                 </div>
             </nav>
             <br>
-		    <article id="weather"></article>
 		    <form>
                 <fieldset>
-                    <legend>Get current weather</legend>
-                    <label for="city">City:</label>
-                    <input type="text" name="city" id="city" />
-                    <input type="button" id="getWeather" value="get current weather" />
+                    <legend>Het huidig weer</legend>
+                    <label for="city">Stad:</label>
+                    <input type="text" name="Stad" id="city" />
+                    <input type="button" id="getWeather" value="Het huidig weer" onclick="getAPIdata()"/>
                 </fieldset>
 	    	</form>
-  
+            <article id="weather"></article>
         </section>
     </body>
 </html>
