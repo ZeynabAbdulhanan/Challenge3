@@ -35,12 +35,18 @@ function onAPISucces(response) {
 
 	// get temperature in Celcius
 	var degC = Math.floor(response.main.temp - 273.15);
+    
+    //name of the city
+    // 
+    
+    //date of today 
+    //
 
 	// render weather in DOM
 	var weatherBox = document.getElementById('weather');
 	weatherBox.innerHTML = name + degC + '&#176;C <br>' + type;
 }
-
+    
 
 function onAPIError(error) {
 	console.error('Fetch request failed', error);
