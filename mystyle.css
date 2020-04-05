@@ -8,6 +8,8 @@ body{
     width: auto;
     height: 0 auto;
     border-bottom: solid 1px #098fd0; 
+    margin: 5px;
+    padding: 5px;
 }
 
 .icon{
@@ -16,7 +18,7 @@ body{
     height: 60px;
     background: none;
     margin: 4px;
-    color: white;
+    color: #e6f5fc;
     position: relative;
 }
 
@@ -27,7 +29,7 @@ body{
 
 .icon:hover i{
     transform: scale(1.5);
-    color: #f1f1f1;
+    color: #b5e2f8;
 }
 
 .logo h2{
@@ -35,6 +37,28 @@ body{
     display: inline-block;
 }
 
+@media only screen and (min-width:600px){
+    
+}
 
+/*Eind van tabletscherm*/
+
+
+/*Media queries for laptop scherm*/
+
+@media only screen and (min-width:1000px){
+    
+}
+
+/*eind van laptopscherm*/
+
+
+/*large laptop scherm*/
+
+@media only screen and (min-width:1366px){
+    
+}
+
+/*eind van csscode*/
 
 
