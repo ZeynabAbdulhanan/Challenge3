@@ -37,6 +37,16 @@ body{
     display: inline-block;
 }
 
+fieldset{
+    width: auto;
+    height: 100px; 
+    margin: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    color: #098fd0;
+}
+
+
 @media only screen and (min-width:600px){
     
 }

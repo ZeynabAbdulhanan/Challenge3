@@ -1,4 +1,3 @@
-
 function getAPIdata() {
 
 	// construct request
