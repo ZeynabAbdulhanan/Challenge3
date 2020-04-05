@@ -38,7 +38,7 @@ function onAPISucces(response) {
 
 	// render weather in DOM
 	var weatherBox = document.getElementById('weather');
-	weatherBox.innerHTML = name+ degC + '&#176;C <br>' + type;
+	weatherBox.innerHTML = name + degC + '&#176;C <br>' + type;
 }
 
 
