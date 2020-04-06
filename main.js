@@ -30,23 +30,35 @@ function getAPIdata() {
 }
 
 function onAPISucces(response) {
-	// get type of weather in string format
-	var type = response.weather[0].description;
+    //titel
+    var titel = "<h3 style='font-size: 18px'>Current weather for " + response.name + " , " + response.sys.country + "</h3>"
+    
+    //time of the city 
+    //var time = formDate(date);
+    
+    //get weather main
+    var weather = "<h4>Weather:" + response.weather[0].main + "</h4>";
+	
+    // get type of weather in string format
+	var type = "<h4>Description:"+ response.weather[0].description + "</h4>";
 
 	// get temperature in Celcius
-	var degC = Math.floor(response.main.temp - 273.15);
+	var degC = "<h4>Temperature:" + Math.floor(response.main.temp - 273.15) + "</h4>";
     
-    //name of the city
-    // 
+	//get humidity
+    var hum = "<h4>Humidity:" + response.main.humidity + "</h4>";
     
-    //date of today 
-    //
-
-	// render weather in DOM
+    // render weather in DOM
 	var weatherBox = document.getElementById('weather');
-	weatherBox.innerHTML = name + degC + '&#176;C <br>' + type;
+	weatherBox.innerHTML = titel + weather + type + degC +'&#176;C' + hum;
 }
     
+//function formDate(date) {
+	//var day = date.getDate();
+	//var month = date.getMonth() + 1;
+	//return day +' / '+ month;
+//}
+
 
 function onAPIError(error) {
 	console.error('Fetch request failed', error);

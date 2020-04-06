@@ -50,7 +50,7 @@ fieldset{
     margin: 5px;
     padding: 20px;
     border-radius: 20px;
-    border-color: #098fd0;
+    border-color: #b5e2f8;
 }
 
 
@@ -79,18 +79,17 @@ input[type=button]:hover {
     
 }
 
-
-
-
-
 #weather {
 	background-color:none;
-	width: auto;
-    height: 60px;
-	padding: 10px;
-    margin: 10px;
-	text-align: center;
+	width: 0 auto;
+    height: 0 auto;
+	padding: 15px;
+    margin: 5px;
+	text-align: left;
     overflow: hidden;
+    letter-spacing: 0.5px;
+    border: 1px solid #b5e2f8;
+    border-radius: 10px;
 }
 
 

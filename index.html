@@ -17,26 +17,20 @@
                     <a href="#" class="icon">
                         <i class="fas fa-cloud-sun"></i>
                     </a>
-                    <h2>Het weer waar je bent!</h2>
+                    <h2>Weather where you are!</h2>
                 </div>
             </nav>
             <br>
 		    <form>
                 <fieldset>
-                    <h3>Zoek voor een stad</h3><br>
-                    <label for="city">De stad</label><br>
-                    <input type="text" name="Stad" id="city" placeholder= "type hier de stad"/><br>
-                    <input type="button" id="getWeather" value="Het huidig weer" onclick="getAPIdata()"/>
+                    <h3>Search for a city</h3><br>
+                    <label for="city">City</label><br>
+                    <input type="text" name="Stad" id="city" placeholder= "type here the name of the city"/><br>
+                    <input type="button" id="getWeather" value="The current weather" onclick="getAPIdata()"/>
                 </fieldset>
 	    	</form>
-            <article id="weather">
-                <div>
-                    <h4 class="city-name"></h4>
-                    <h3 class="date"></h3>
-                    <p class="current-temp"></p>
-                    <p class="current-humidiaty"></p>
-                    <p class="current-windspeed"></p>
-                </div>    
+            <br>
+            <article id="weather"> 
             </article>
         </section>
     </body>
