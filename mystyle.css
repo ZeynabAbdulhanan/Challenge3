@@ -64,18 +64,36 @@ input{
     box-sizing: border-box;
 }
 
+input[type=text]:hover{
+    border-color: #b5e2f8; 
+    
+}
+
+input[type=text]:focus{
+    border: 2px solid white;
+    border-radius: 4px;
+    
+}
+
 input[type=button] {
     background-color: #098fd0;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
+    border: 1px solid #098fd0;
     border-radius: 4px;
     cursor: pointer;
 }
 
 input[type=button]:hover {
     background-color: #b5e2f8; 
+    border-color: #098fd0;
+    border-radius: 4px;
+}
+
+input[type=button]:focus{
+    border: 2px solid white;
+    border-radius: 4px;
     
 }
 
@@ -92,6 +110,18 @@ input[type=button]:hover {
     border-radius: 10px;
 }
 
+#forecast{
+    background-color:none;
+	width: 0 auto;
+    height: 0 auto;
+	padding: 15px;
+    margin: 5px;
+	text-align: left;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    border: 1px solid #b5e2f8;
+    border-radius: 10px;
+}
 
 @media only screen and (min-width:600px){
     

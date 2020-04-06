@@ -1,4 +1,3 @@
-
 function getAPIdata() {
 
 	var url = 'https://api.openweathermap.org/data/2.5/weather';
@@ -58,16 +57,53 @@ function onAPISucces(response) {
 	var weatherBox = document.getElementById('weather');
 	weatherBox.innerHTML = titel + weather + type + degC  + feelsLike + hum + wind;
 }
-    
+
 //function formDate(date) {
 	//var day = date.getDate();
 	//var month = date.getMonth() + 1;
 	//return day +' / '+ month;
 //}
 
-
 function onAPIError(error) {
 	console.error('Fetch request failed', error);
 	var weatherBox = document.getElementById('weather');
-	weatherBox.innerHTML = 'Geen weergegevens beschikbaar <bro /> Heb je een geldige stad ingevoerd?'; 
+    var text = document.getElementById('city'); 
+    weatherBox.innerHTML = 'No weather data available, <bro /> Have you entered a valid city?'; 
+    weatherBox.style.border = "1px solid red"; 
+    text.style.border = "1px solid red";
+}
+
+//function forecast
+
+function getCurrentForecast() {
+
+	var url = 'https://api.openweathermap.org/data/2.5/weather';
+	var apiKey ='671ed302134d547adf8e79c854664915';
+	var city = document.getElementById('city').value;
+
+	// construct request
+	var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
+    
+    	// construct request
+	var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
+	
+	// get current weather
+	fetch(request)
+	
+	// parse to JSON format
+	.then(function(data) {
+		if(!data.ok) throw Error(data.statusText);
+		return data.json();
+	})
+	
+	// render weather per day
+	.then(function(data) {
+		// render weatherCondition
+		onAPISucces(data);	
+	})
+	
+	// catch error
+	.catch(function (error) {
+		onAPIError(error);
+	});
 }
