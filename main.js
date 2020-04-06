@@ -19,7 +19,7 @@ function getAPIdata() {
 	// render weather per day
 	.then(function(response) {
 		// render weatherCondition
-		onAPISucces(response);	
+		onAPISuccesA(response);	
 	})
 	
 	// catch error
@@ -28,7 +28,7 @@ function getAPIdata() {
 	});
 }
 
-function onAPISucces(response) {
+function onAPISuccesA(response) {
     //titel
     var titel = "<h3 style='font-size: 18px'>Current weather for " + response.name + " , " + response.sys.country + "</h3>"
     
@@ -73,20 +73,19 @@ function onAPIError(error) {
     text.style.border = "1px solid red";
 }
 
+
 //function forecast
 
-function getCurrentForecast() {
+function getCurrentForecast(){
 
-	var url = 'https://api.openweathermap.org/data/2.5/weather';
+	var url = 'https://api.openweathermap.org/data/2.5/forecast';
 	var apiKey ='671ed302134d547adf8e79c854664915';
 	var city = document.getElementById('city').value;
 
 	// construct request
 	var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
+
     
-    	// construct request
-	var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
-	
 	// get current weather
 	fetch(request)
 	
@@ -99,7 +98,7 @@ function getCurrentForecast() {
 	// render weather per day
 	.then(function(data) {
 		// render weatherCondition
-		onAPISucces(data);	
+		onAPISuccesB(data);	
 	})
 	
 	// catch error
@@ -107,3 +106,65 @@ function getCurrentForecast() {
 		onAPIError(error);
 	});
 }
+
+function onAPISuccesB(data) {
+    	
+    var weatherList = data.list;
+	var forecastBox = document.getElementById('forecast');
+
+	for(var i=0; i< weatherList.length; i++){
+		//console.log(weatherList[i].main.temp - 273.15);
+
+		var dateTime = new Date(weatherList[i].dt_txt);
+		var date = formDate(dateTime);
+		var time = formTime(dateTime);
+		var temp = Math.floor(weatherList[i].main.temp - 273.15);
+
+		forecastMessage =  '<div class="forecastMoment">';
+		forecastMessage +=   '<div class="date"> '+date+' </div>';
+		forecastMessage +=	 '<div class="time"> '+time+' </div>';
+		forecastMessage +=	 '<div class="temp"> '+temp+'&#176;C </div>';
+		forecastMessage += '</div>';
+
+		forecastBox.innerHTML += forecastMessage;
+	}
+    
+}
+
+function onAPIError(error) {
+        var forecastBox = document.getElementById('forecast');
+	    forecastBox.className = 'hidden'; 
+}
+
+function updateUIError() {
+	var forecastBox = document.getElementById('forecast');
+	forecastBox.className = 'hidden'; 
+}
+
+/**
+ * Format date
+ */
+function formDate(date) {
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	return day +' / '+ month;
+}
+
+/**
+ * Format time
+ */
+function formTime(date) {
+	var hours = date.getHours();
+	if(hours<10){
+		hours = '0'+hours;
+	}
+	var minutes = date.getMinutes();
+	if(minutes < 10){
+		minutes = '0'+ minutes;
+	}
+	return hours +':'+ minutes;
+}
+
+// init data stream
+getAPIdata();
+
