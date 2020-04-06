@@ -33,24 +33,30 @@ function onAPISucces(response) {
     //titel
     var titel = "<h3 style='font-size: 18px'>Current weather for " + response.name + " , " + response.sys.country + "</h3>"
     
-    //time of the city 
+    //dat of today 
     //var time = formDate(date);
     
     //get weather main
-    var weather = "<h4>Weather:" + response.weather[0].main + "</h4>";
+    var weather = "<h4 style='padding-left: 10px'>Weather: " + response.weather[0].main + "</h4>";
 	
-    // get type of weather in string format
-	var type = "<h4>Description:"+ response.weather[0].description + "</h4>";
+    // get type of weather in string format with icon
+	var type = "<h4 style='padding-left: 10px'>Description: <img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 40px; padding: 0px'>"+ response.weather[0].description + "</h4>";
 
 	// get temperature in Celcius
-	var degC = "<h4>Temperature:" + Math.floor(response.main.temp - 273.15) + "</h4>";
+	var degC = "<h4 style='padding-left: 10px'>Temperature: " + Math.floor(response.main.temp - 273.15) + "&#176;C </h4>";
+    
+    //get feels like
+    var feelsLike = "<h4 style='padding-left: 10px'>Feel like: " + response.main.feels_like + "&deg;</h4>";
     
 	//get humidity
-    var hum = "<h4>Humidity:" + response.main.humidity + "</h4>";
+    var hum = "<h4 style='padding-left: 10px'>Humidity: " + response.main.humidity + "%</h4>";
+    
+    //get wind speed 
+    var wind = "<h4 style='padding-left: 10px'>Wind speed: " + response.wind.speed + "m/s</h4>";
     
     // render weather in DOM
 	var weatherBox = document.getElementById('weather');
-	weatherBox.innerHTML = titel + weather + type + degC +'&#176;C' + hum;
+	weatherBox.innerHTML = titel + weather + type + degC  + feelsLike + hum + wind;
 }
     
 //function formDate(date) {
