@@ -75,3 +75,62 @@ function onAPIError(error) {
 document.getElementById('getWeather').onclick = function(){
     getAPIdata();
 }
+
+
+////////////////////////////////////////////////////////forecast function///////////////////////////////////////////////////////////
+function getHourlyForecast () {
+    
+    var url = 'https://api.openweathermap.org/data/2.5/forecast';
+	var apiKey ='671ed302134d547adf8e79c854664915';
+	var city = document.getElementById('city').value;
+      
+      var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
+	
+	// get current weather
+	fetch(request)
+      
+  .then(function (response){
+    console.log(response)
+        
+    getForecast(response);    
+    });
+}
+
+    
+    function getForecast(response){
+    // variable to hold response.list
+    let results = response.list;
+    console.log(response)
+    
+    //declare start date to check against
+    // startDate = 20
+    //have end date, endDate = startDate + 5
+
+    for (let i = 0; i < results.length; i++) {
+
+      let day = Number(results[i].dt_txt.split('-')[2].split(' ')[0]);
+      let hour = results[i].dt_txt.split('-')[2].split(' ')[1];
+      console.log(day);
+      console.log(hour);
+        
+        	// get temperature in Celcius
+	var degC = "<h4 style='padding-left: 10px'>Temperature: " + Math.floor(response.main.temp - 273.15) + "&#176;C </h4>";
+    
+    //get feels like
+    var feelsLike = "<h4 style='padding-left: 10px'>Feel like: " + response.main.feels_like + "&deg;</h4>";
+    
+	//get humidity
+    var hum = "<h4 style='padding-left: 10px'>Humidity: " + response.main.humidity + "%</h4>";
+    
+    //get wind speed 
+    var wind = "<h4 style='padding-left: 10px'>Wind speed: " + response.wind.speed + "m/s</h4>";
+        
+    var weatherBox2 = document.getElementById('weather');
+	weatherBox2.innerHTML = degC  + feelsLike + hum + wind;
+             
+      }
+    }
+document.getElementById('getWeather').onclick = function(){
+    getHourlyForecast();
+}
+
