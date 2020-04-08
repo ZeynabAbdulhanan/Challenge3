@@ -58,12 +58,6 @@ function onAPISucces(response) {
 	weatherBox.innerHTML = titel + weather + type + degC  + feelsLike + hum + wind;
 }
 
-//function formDate(date) {
-	//var day = date.getDate();
-	//var month = date.getMonth() + 1;
-	//return day +' / '+ month;
-//}
-
 function onAPIError(error) {
     var weatherBox = document.getElementById('weather');
     var city = document.getElementById('city');
@@ -72,65 +66,87 @@ function onAPIError(error) {
     city.style.borderColor = "red";
 }
 
-document.getElementById('getWeather').onclick = function(){
-    getAPIdata();
-}
-
-
 ////////////////////////////////////////////////////////forecast function///////////////////////////////////////////////////////////
-function getHourlyForecast () {
-    
+function getHourlyforecast() {
     var url = 'https://api.openweathermap.org/data/2.5/forecast';
 	var apiKey ='671ed302134d547adf8e79c854664915';
 	var city = document.getElementById('city').value;
-      
-      var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
+
+	// construct request
+	var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
 	
-	// get current weather
+	// get weather forecast
 	fetch(request)
-      
-  .then(function (response){
-    console.log(response)
-        
-    getForecast(response);    
-    });
+
+	// parse to JSON format
+	.then(function(response) {
+		if(!response.ok) throw Error(response.statusText);
+		return response.json();
+	})
+	
+	// render weather per day
+	.then(function(response) {
+		console.log(response);
+		// render weatherCondition
+		getForecast(response);
+	})
+	
+	// catch error
+	.catch(function (error) {
+		updateUIError();
+	});
 }
 
-    
-    function getForecast(response){
-    // variable to hold response.list
-    let results = response.list;
-    console.log(response)
-    
-    //declare start date to check against
-    // startDate = 20
-    //have end date, endDate = startDate + 5
+/**
+ * Render weather listing
+ */
+function getForecast(response) {
 
-    for (let i = 0; i < results.length; i++) {
+	var i;
+    var forecastList = response.list;
+	var forecastBox = document.getElementById('forecast');
 
-      let day = Number(results[i].dt_txt.split('-')[2].split(' ')[0]);
-      let hour = results[i].dt_txt.split('-')[2].split(' ')[1];
-      console.log(day);
-      console.log(hour);
+	for(i=0; i< forecastList.length; i++){
         
-        	// get temperature in Celcius
-	var degC = "<h4 style='padding-left: 10px'>Temperature: " + Math.floor(response.main.temp - 273.15) + "&#176;C </h4>";
+		var dateTime = new Date(forecastList[i].dt_txt);
+		var date = dateToday(date) ;
+		var time = timeNow(time);
+		var temp = Math.floor(forecastList[i].main.temp - 273.15);
+
+		forecastMessage =  '<div class="forecastMoment">';
+		forecastMessage +=   '<div class="date"> '+date+' </div>';
+		forecastMessage +=	 '<div class="time"> '+time+' </div>';
+		forecastMessage +=	 '<div class="temp"> '+temp+'&#176;C </div>';
+		forecastMessage += '</div>';
+
+		weatherBox.innerHTML += forecastMessage;
+	}
+}
+
+
+function updateUIError(Error) {
+	var forecastBox = document.getElementById('weather');
+	forecastBox.className = 'hidden'; 
+}
+
+
+function dateToday(date) {
+	var day = date.getDate();
+	var month = date.getMonth();
+    var year = date.getYear(); 
+	return day +' / '+ month + ' / ' + year;
+}
+
+function timeNow(time) {
+    var hours = time.getHours(); 
+    var minutes = time.getMinutes();
     
-    //get feels like
-    var feelsLike = "<h4 style='padding-left: 10px'>Feel like: " + response.main.feels_like + "&deg;</h4>";
+    var amPm = (hours < 12 ) ? "AM" : "PM"; 
     
-	//get humidity
-    var hum = "<h4 style='padding-left: 10px'>Humidity: " + response.main.humidity + "%</h4>";
-    
-    //get wind speed 
-    var wind = "<h4 style='padding-left: 10px'>Wind speed: " + response.wind.speed + "m/s</h4>";
-        
-    var weatherBox2 = document.getElementById('weather');
-	weatherBox2.innerHTML = degC  + feelsLike + hum + wind;
-             
-      }
-    }
+    return hours + ":" + minutes + ":" + amPm;  
+}
+
 document.getElementById('getWeather').onclick = function(){
-    getHourlyForecast();
+    getAPIdata();
+    getHourlyforecast();
 }
-
