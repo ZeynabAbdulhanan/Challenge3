@@ -171,7 +171,7 @@ function getForecast(response) {
 /////////////////////////////////////////////////////////sunrise/sunset/////////////////////////////////////////////////////////////
 function getAPIdata2() {
     
-    var sunRiseSet = document.getElementById('sunRiseSet');
+    const riseSetTimes = document.getElementById('sunRiseSet');
     
     const sendHttpRequest = (method, url, data) =>{
         return fetch(url, {
@@ -210,18 +210,7 @@ function getAPIdata2() {
     };
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -278,8 +267,8 @@ function getAPIdata2() {
     
 //}
 
-document.getElementById('getWeather').onclick = function(){
-    getAPIdata();
-    getHourlyForecast();
-    getAPIdata2();
+//document.getElementById('getWeather').onclick = function(){
+    //getAPIdata();
+    //getHourlyForecast();
+    //getAPIdata2();
 }
