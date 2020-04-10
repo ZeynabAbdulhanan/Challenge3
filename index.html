@@ -9,36 +9,43 @@
         <script src="https://kit.fontawesome.com/bd9010d42c.js" crossorigin="anonymous"></script>
         <script src="main.js" defer></script>
 	</head>
-    <body> 
+    <body>
+        <div class="background-img">
         <section class="grid_container">
-            <nav class="logo">
+            <header class="logo">
                 <div>
                     <!--logo van spaceX-->
-                    <a href="#" class="icon">
-                        <i class="fas fa-cloud-sun"></i>
+                    <a href="#">
+                        <img src="spacexlogo.lnk"/>
                     </a>
-                    <h2>Weather where you are!</h2>
                 </div>
-            </nav>
+                <div class="shareIcon">
+                    <i class="far fa-share-square"></i>
+                </div>
+            </header>
             <br>
-		    <form action="/" method="get" id="form">
-                <fieldset>
-                    <h3>Search for a city</h3><br>
-                    <label for="city">City</label><br>
-                    <input type="text" name="Stad" id="city" placeholder= "type here the name of the city"/><br>
-                    <input type="button" id="getWeather" value="The current weather"/>
-                </fieldset>
+            <h2 class="titel">Search for a city</h2><br>
+		    <form action="/" method="get" id="form" class="searchBox">
+                    <input type="text" name="Stad" id="city" placeholder= "Type here the name of the city"/>
+                    <input type="button" id="getWeather" value="Search"/>
 	    	</form>
         </section>
-            <br>
+        <br><br><br><br><br><br><br>
         <article id="weather"></article>
-            <br>
+        <br>
         <article id="forecast"></article>
-            <br>
+        <br>
         <article id="sunRiseSet">
         </article>
         
-        
+        <footer class="footer">
+            <p>
+                &copy;2020 -<small>SpaceX</small><br/>
+                <small>In opdracht van de HHS - Zeynab Abdulhanan</small>
+            </p>
+            
+        </footer>
+        </div>    
     </body>
 </html>
 

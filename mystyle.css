@@ -1,11 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     box-sizing: border-box; 
     background-color: none;
-   
+     background-image: url(background.jpg);    
+    -webkit-background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center fixed;
+    height: 100%;
+    font-family: 'Courier Primar', Courier, monospace;
+}
+
+.background-img{
 }
 
 .logo{
-    background-color: #0a9fe8;
+    background-color:none;
     width: auto;
     height: 0 auto;
     border-bottom: solid 1px #098fd0; 
@@ -38,30 +50,40 @@ body{
     color: white;
     display: inline-block;
 }
-
-legend{
-    font-size: 18px;
+.titel{
+    margin: 20px 20px; 
+    padding: 0px; 
+    color: white;
+    font-size: 45px;
+    text-align: center;
+    
 }
-
-fieldset{
-    background-color: #f3f3f3;
-    width: auto;
-    height: auto; 
-    margin: 5px;
-    padding: 20px;
-    border-radius: 20px;
-    border-color: #b5e2f8;
+.searchBox{
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 800px;
+    width: transform(-50%,-50%);
 }
-
 
 input{
-    width: 300px;
-    padding: 12px 20px;
-    margin: 8px 0;
+    top: 20%;
+    align-content: center;
+    position: relative;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    font-size: 20px;
     box-sizing: border-box;
+    transition: .5s;
+}
+
+input[type="text"]{
+    background: #ffffff;
+    width: 340px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 0 25px; 
+    border-radius: 25px 0 0 25px; 
 }
 
 input[type=text]:hover{
@@ -75,14 +97,17 @@ input[type=text]:focus{
     
 }
 
-input[type=button] {
+input[type="button"] {
+    position: relative;
+    left: -5px;
+    border-radius: 0 25px 25px 0;
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
     background-color: #098fd0;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: 1px solid #098fd0;
-    border-radius: 4px;
     cursor: pointer;
+    color: #ffffff;
 }
 
 input[type=button]:hover {
@@ -106,8 +131,8 @@ input[type=button]:focus{
 	text-align: left;
     overflow: hidden;
     letter-spacing: 0.5px;
-    border: 1px solid #b5e2f8;
-    border-radius: 10px;
+    /**border: 1px solid #b5e2f8;
+    border-radius: 10px;**/
 }
 
 #forecast{
@@ -119,8 +144,8 @@ input[type=button]:focus{
 	text-align: left;
     overflow: hidden;
     letter-spacing: 0.5px;
-    border: 1px solid #b5e2f8;
-    border-radius: 10px;
+    /**border: 1px solid #b5e2f8;
+    border-radius: 10px;**/
 }
 
 #sunRiseSet{
@@ -132,8 +157,8 @@ input[type=button]:focus{
 	text-align: left;
     overflow: hidden;
     letter-spacing: 0.5px;
-    border: 1px solid #b5e2f8;
-    border-radius: 10px;
+    /**border: 1px solid #b5e2f8;
+    border-radius: 10px;**/
 }
 
 @media only screen and (min-width:600px){
