@@ -123,6 +123,19 @@ input[type=button]:focus{
     border-radius: 10px;
 }
 
+#sunRiseSet{
+    background-color:none;
+	width: 0 auto;
+    height: 0 auto;
+	padding: 15px;
+    margin: 5px;
+	text-align: left;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    border: 1px solid #b5e2f8;
+    border-radius: 10px;
+}
+
 @media only screen and (min-width:600px){
     
 }

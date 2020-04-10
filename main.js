@@ -58,6 +58,12 @@ function onAPISucces(response) {
 	weatherBox.innerHTML = titel + weather + type + degC  + feelsLike + hum + wind;
 }
 
+//function formDate(date) {
+	//var day = date.getDate();
+	//var month = date.getMonth() + 1;
+	//return day +' / '+ month;
+//}
+
 function onAPIError(error) {
     var weatherBox = document.getElementById('weather');
     var city = document.getElementById('city');
@@ -66,11 +72,13 @@ function onAPIError(error) {
     city.style.borderColor = "red";
 }
 
+
 ////////////////////////////////////////////////////////forecast function///////////////////////////////////////////////////////////
-function getHourlyforecast() {
-    var url = 'https://api.openweathermap.org/data/2.5/forecast';
+
+function getHourlyForecast() {
+	var url = 'https://api.openweathermap.org/data/2.5/forecast';
 	var apiKey ='671ed302134d547adf8e79c854664915';
-	var city = document.getElementById('city').value;
+	var city = document.getElementById('city').value;;
 
 	// construct request
 	var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
@@ -93,60 +101,98 @@ function getHourlyforecast() {
 	
 	// catch error
 	.catch(function (error) {
-		updateUIError();
+
+		console.error('Request failed', error);
 	});
 }
 
-/**
- * Render weather listing
- */
 function getForecast(response) {
 
-	var i;
+    var forecastBox = document.getElementById('forecast');
     var forecastList = response.list;
-	var forecastBox = document.getElementById('forecast');
-
-	for(i=0; i< forecastList.length; i++){
+    
+    //$("#forecast").empty();
+	
+	for(var i=0; i< forecastList.length; i++){
+     
+        var dateTime = new Date(forecastList[i].dt_txt);
+        var titel = ''; 
+		var date = 'Date:' + dateTime.getDay() + '/' + dateTime.getMonth();
+		var timeHour = 'Time:'+ dateTime.getHours(); 
+        var timeMin = 'Time:' + dateTime.getMinutes();
+		var temp = 'Tempurate:' + Math.floor(forecastList[i].main.temp - 273.15);
+        var hum = 'Humidity:' + forecastList[i].main.humidity;
         
-		var dateTime = new Date(forecastList[i].dt_txt);
-		var date = dateToday(date) ;
-		var time = timeNow(time);
-		var temp = Math.floor(forecastList[i].main.temp - 273.15);
+         
+        //timeHour = (timeHour > 12) ? timeHour - 12 : timeHour;
+        
+        //timeHour = (timeHour < 10) ? "0" + timeHour : timeHour
+        //timeMin = (timeMin < 10) ? "0" + timeMin : timeMin
+        
+        //var h5date= '<p class="date"> '+date+' </p>';
+        //var pTemp = '<p class="temp"> '+temp+'&#176;C </p>';
+        //var pHum = '<p class="hum"> '+hum+' </p>';
+        
+        //var weather = forecastList[i].weather[0].main
+        
+            //if (weather === "Rain") {
+                //var icon = "<img src='http://openweathermap.org/img/wn/09d.png' style=' width: 40px; padding: 0px'>";
+            //else if (weather === "Clouds") {
+                //var icon = "<img src ='http://openweathermap.org/img/wn/03d.png' style =' height: 40px; width: 40px'>";
+            //} 
+            //else if (weather === "Clear") {
+                //var icon = "<img src= 'http://openweathermap.org/img/wn/01d.png' style= ' height: 40px; width: 40px'>";
+            //}
+            //else if (weather === "Drizzle") {
+                //var icon = "<img src = 'http://openweathermap.org/img/wn/10d.png' style ='height: 40px; width: 40px'>";
+            //}
+            //else if (weather === "Snow") {
+                //var icon = "<img src = 'http://openweathermap.org/img/wn/13d.png' style = 'height: 40px; width: 40px'>";
+            //}
+        
+        text = '<div class="forecastDiv">';
+        text += '<p class="titelDiv"> '+titel+'</p>';
+        //text += '<img class="weather' +weather+'>';         
+        text +='<p class="date"> '+date+' </p>';
+		text +='<p class="timeHour"> '+timeHour+'</p>'; text += '<p class="timeMin">'+timeMin+'</p>';
+		text +='<p class="temp"> '+temp+'&#176;C </p>';
+        text +='<p class="hum"> '+hum+' %</p>';
+		text +='</div>';
 
-		forecastMessage =  '<div class="forecastMoment">';
-		forecastMessage +=   '<div class="date"> '+date+' </div>';
-		forecastMessage +=	 '<div class="time"> '+time+' </div>';
-		forecastMessage +=	 '<div class="temp"> '+temp+'&#176;C </div>';
-		forecastMessage += '</div>';
-
-		weatherBox.innerHTML += forecastMessage;
+		forecastBox.innerHTML += text;
 	}
-}
-
-
-function updateUIError(Error) {
-	var forecastBox = document.getElementById('weather');
-	forecastBox.className = 'hidden'; 
-}
-
-
-function dateToday(date) {
-	var day = date.getDate();
-	var month = date.getMonth();
-    var year = date.getYear(); 
-	return day +' / '+ month + ' / ' + year;
-}
-
-function timeNow(time) {
-    var hours = time.getHours(); 
-    var minutes = time.getMinutes();
     
-    var amPm = (hours < 12 ) ? "AM" : "PM"; 
+     //forecastBox.append("h5date");
+     //forecastBox.append("pTemp");
+     //forecastBox.append("pHum");
+     //$("#forecast").append("forecastBox");
+}
+
+/////////////////////////////////////////////////////////sunrise/sunset/////////////////////////////////////////////////////////////
+
+function sunRiseSet(){
+    const geTimes = document.getElementById('sunRiseSet'); 
     
-    return hours + ":" + minutes + ":" + amPm;  
+    const getData = () => {
+        const xhr = new XMLHttpRequest(); 
+        xhr.open('GET', 'https://api.sunrise-sunset.org/json');
+    }; 
+}
+
+
+//function getSunRiseSet(response){
+    
+    //var sunRise = response.results.sunrise;
+    //var sunSet = response.results.sunset; 
+    //var DayLength = response.results.day_length;
+    
+    //var sunRiseSet = document.getElementById('sunRiseSet');
+    //sunRiseSet = sunRise + sunSet + DayLength;
+    
 }
 
 document.getElementById('getWeather').onclick = function(){
     getAPIdata();
-    getHourlyforecast();
+    getHourlyForecast();
+    sunRiseSet();
 }
