@@ -169,16 +169,103 @@ function getForecast(response) {
 }
 
 /////////////////////////////////////////////////////////sunrise/sunset/////////////////////////////////////////////////////////////
-
-function sunRiseSet(){
-    const geTimes = document.getElementById('sunRiseSet'); 
+function getAPIdata2() {
     
-    const getData = () => {
-        const xhr = new XMLHttpRequest(); 
-        xhr.open('GET', 'https://api.sunrise-sunset.org/json');
-    }; 
+    var sunRiseSet = document.getElementById('sunRiseSet');
+    
+    const sendHttpRequest = (method, url, data) =>{
+        return fetch(url, {
+            method: method,
+            body: JSON.stringify(data),
+            headers: data ? {'Content-Type': 'text/html; charset=UTF-8' } : {} 
+            
+        })
+        .then(response => {
+            if (response.status >=400){ //response ok
+            console.error('Request failed', error);
+            
+        }
+            return response.json();
+        });
+};
+
+    const getData = () =>{
+        sendHttpRequest('GET', 'https://sunrise-sunset.org/api')
+        .then(response => {
+        return response.json();
+    })
+        .then(responseData =>{
+        console.log(responseData);
+    });
+};
+    
+    const sendData = () => {
+        sendHttpRequest('POST', 'https://sunrise-sunset.org/api'), {
+            "results":
+        {
+            "sunrise":"2015-05-21T05:05:35+00:00",
+            "sunset":"2015-05-21T19:22:59+00:00"
+        }
+      
+    };
+
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function sunRiseSet(){
+    
+    //var city = document.getElementById('city').value;
+    
+    //const sendHttpRequest = (method, url, data) =>{
+        //const promsie = new promsie((resolve, reject)) => {
+            //const xhr = new XMLHttpRequest(); 
+            //xhr.open(method, url);
+            
+            //xhr.responseType = 'json'; 
+            
+            //if (data) {
+                //xhr.setRequestHeader('content-type', 'application/json')
+            //}
+            
+            //xhr.onload = () => {
+                //if (xhr.status >= 400){
+                    //reject(xhr.response); 
+                //} else{
+                    //resolve(xhr.response); 
+                //}
+            //}; 
+            
+            //xhr.onerror = () => {
+                //reject('something went wrong!');
+            //};
+            
+            //xhr.send(JSON.stringify(data));        
+        //});
+        //return promsie;
+    //}; 
 
 //function getSunRiseSet(response){
     
@@ -189,10 +276,10 @@ function sunRiseSet(){
     //var sunRiseSet = document.getElementById('sunRiseSet');
     //sunRiseSet = sunRise + sunSet + DayLength;
     
-}
+//}
 
 document.getElementById('getWeather').onclick = function(){
     getAPIdata();
     getHourlyForecast();
-    sunRiseSet();
+    getAPIdata2();
 }
