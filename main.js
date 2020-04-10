@@ -31,11 +31,7 @@ function getAPIdata() {
 function onAPISucces(response) {
     //titel
     var titel = "<h3 style='font-size: 18px'>Current weather for " + response.name + " , " + response.sys.country + "</h3>"
-    
-    //dat of today 
-    //var time = formDate(date);
-    
-    //get weather main
+
     var weather = "<h4 style='padding-left: 10px'>Weather: " + response.weather[0].main + "</h4>";
 	
     // get type of weather in string format with icon
@@ -57,12 +53,6 @@ function onAPISucces(response) {
 	var weatherBox = document.getElementById('weather');
 	weatherBox.innerHTML = titel + weather + type + degC  + feelsLike + hum + wind;
 }
-
-//function formDate(date) {
-	//var day = date.getDate();
-	//var month = date.getMonth() + 1;
-	//return day +' / '+ month;
-//}
 
 function onAPIError(error) {
     var weatherBox = document.getElementById('weather');
@@ -110,8 +100,6 @@ function getForecast(response) {
 
     var forecastBox = document.getElementById('forecast');
     var forecastList = response.list;
-    
-    //$("#forecast").empty();
 	
 	for(var i=0; i< forecastList.length; i++){
      
@@ -123,31 +111,18 @@ function getForecast(response) {
 		var temp = 'Tempurate:' + Math.floor(forecastList[i].main.temp - 273.15);
         var hum = 'Humidity:' + forecastList[i].main.humidity;
         
-         
-        //timeHour = (timeHour > 12) ? timeHour - 12 : timeHour;
-        
-        //timeHour = (timeHour < 10) ? "0" + timeHour : timeHour
-        //timeMin = (timeMin < 10) ? "0" + timeMin : timeMin
-        
-        //var h5date= '<p class="date"> '+date+' </p>';
-        //var pTemp = '<p class="temp"> '+temp+'&#176;C </p>';
-        //var pHum = '<p class="hum"> '+hum+' </p>';
-        
         //var weather = forecastList[i].weather[0].main
         
             //if (weather === "Rain") {
-                //var icon = "<img src='http://openweathermap.org/img/wn/09d.png' style=' width: 40px; padding: 0px'>";
+                //var icon = "<a>'<i class="fas fa-cloud-rain"></i>';
             //else if (weather === "Clouds") {
-                //var icon = "<img src ='http://openweathermap.org/img/wn/03d.png' style =' height: 40px; width: 40px'>";
+                //var icon = '<i class="fas fa-cloud"></i>';
             //} 
             //else if (weather === "Clear") {
-                //var icon = "<img src= 'http://openweathermap.org/img/wn/01d.png' style= ' height: 40px; width: 40px'>";
-            //}
-            //else if (weather === "Drizzle") {
-                //var icon = "<img src = 'http://openweathermap.org/img/wn/10d.png' style ='height: 40px; width: 40px'>";
+                //var icon = '<i class="fas fa-cloud-sun"></i>';
             //}
             //else if (weather === "Snow") {
-                //var icon = "<img src = 'http://openweathermap.org/img/wn/13d.png' style = 'height: 40px; width: 40px'>";
+                //var icon = '<i class="far fa-snowflake"></i>';
             //}
         
         text = '<div class="forecastDiv">';
@@ -161,114 +136,76 @@ function getForecast(response) {
 
 		forecastBox.innerHTML += text;
 	}
-    
-     //forecastBox.append("h5date");
-     //forecastBox.append("pTemp");
-     //forecastBox.append("pHum");
-     //$("#forecast").append("forecastBox");
+
 }
 
 /////////////////////////////////////////////////////////sunrise/sunset/////////////////////////////////////////////////////////////
-function getAPIdata2() {
-    
-    const riseSetTimes = document.getElementById('sunRiseSet');
-    
-    const sendHttpRequest = (method, url, data) =>{
-        return fetch(url, {
-            method: method,
-            body: JSON.stringify(data),
-            headers: data ? {'Content-Type': 'text/html; charset=UTF-8' } : {} 
-            
-        })
-        .then(response => {
-            if (response.status >=400){ //response ok
-            console.error('Request failed', error);
-            
-        }
-            return response.json();
-        });
-};
 
-    const getData = () =>{
-        sendHttpRequest('GET', 'https://sunrise-sunset.org/api')
-        .then(response => {
-        return response.json();
-    })
-        .then(responseData =>{
-        console.log(responseData);
+function showSunRiseSet(){
+    
+    var url = 'https://api.stormglass.io/v2/astronomy/point';
+    var lat = '58.7984';
+    var lng = '17.8081';   
+	var apiKey ='dbcd824e-7b46-11ea-b83a-0242ac130002-dbcd8302-7b46-11ea-b83a-0242ac130002';
+	var city = document.getElementById('city').value;
+    
+    var request = url + '?' + 'lat=' + '$' + lat + '&' +'lng=' + '$' + lng + 'appid=' + apiKey + '&' + 'q=' + city;
+    
+    fetch(request)
+    
+    .then((response) => response.json()).then((jsonData) => {
+            sunRiseSetTimes(jsonData)
     });
-};
+    }
+
+
+function sunRiseSetTimes(jsonData) {
     
-    const sendData = () => {
-        sendHttpRequest('POST', 'https://sunrise-sunset.org/api'), {
-            "results":
+    var sunBox = document.getElementById('sunRiseSet');   
+    
+    var text = {
+        "data": [
         {
-            "sunrise":"2015-05-21T05:05:35+00:00",
-            "sunset":"2015-05-21T19:22:59+00:00"
+            "sunrise": "7:27:02 AM",
+            "sunset": "5:05:55 PM",
+            "time": "",
+        
+        },
+        
+        ],
+            "meta": {
+            "cost": 1,
+            "dailyQuota": 50,
+            "lat": 58.7984,
+            "lng": 17.8081,
+            "requestCount": 1,
         }
-      
-    };
-
+    }
+    
+    
+        sunRiseSet.innerHTML = text.data.sunrise + text.data.sunset + text.data.lat + text.data.lng;
+    
+    
+	//var weatherBox = document.getElementById('sunRiseSet');
+	//weatherBox.innerHTML = sunrise + sunset;
 }
-    
 
+//function showSunRiseSet(){
+    //var text = '{"results":[' +
+              // '{"sunrise":"7:27:02 AM","sunset":"5:05:55 PM" },' +
+               //'{"sunrise":"7:27:05 AM","sunset":"5:05:55 PM" },' +
+               //'{"firstName":"Peter","lastName":"Jones" }]}';
 
+//obj = JSON.parse(text);
+//document.getElementById("sunRiseSet").innerHTML =
+//obj.results[1].sunrise + " " + obj.results[1].sunset;
 
-
-
-
-
-
-
-
-
-
-
-//function sunRiseSet(){
-    
-    //var city = document.getElementById('city').value;
-    
-    //const sendHttpRequest = (method, url, data) =>{
-        //const promsie = new promsie((resolve, reject)) => {
-            //const xhr = new XMLHttpRequest(); 
-            //xhr.open(method, url);
-            
-            //xhr.responseType = 'json'; 
-            
-            //if (data) {
-                //xhr.setRequestHeader('content-type', 'application/json')
-            //}
-            
-            //xhr.onload = () => {
-                //if (xhr.status >= 400){
-                    //reject(xhr.response); 
-                //} else{
-                    //resolve(xhr.response); 
-                //}
-            //}; 
-            
-            //xhr.onerror = () => {
-                //reject('something went wrong!');
-            //};
-            
-            //xhr.send(JSON.stringify(data));        
-        //});
-        //return promsie;
-    //}; 
-
-//function getSunRiseSet(response){
-    
-    //var sunRise = response.results.sunrise;
-    //var sunSet = response.results.sunset; 
-    //var DayLength = response.results.day_length;
-    
-    //var sunRiseSet = document.getElementById('sunRiseSet');
-    //sunRiseSet = sunRise + sunSet + DayLength;
-    
 //}
 
-//document.getElementById('getWeather').onclick = function(){
-    //getAPIdata();
-    //getHourlyForecast();
-    //getAPIdata2();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.getElementById('getWeather').onclick = function(){
+    getAPIdata();
+    getHourlyForecast();
+    showSunRiseSet();   
 }

@@ -7,7 +7,6 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 		<link type="text/css" href="mystyle.css" rel="stylesheet"/>  
         <script src="https://kit.fontawesome.com/bd9010d42c.js" crossorigin="anonymous"></script>
-        <script src="https://sunrise-sunset.org/api"></script>
         <script src="main.js" defer></script>
 	</head>
     <body> 
@@ -27,20 +26,19 @@
                     <h3>Search for a city</h3><br>
                     <label for="city">City</label><br>
                     <input type="text" name="Stad" id="city" placeholder= "type here the name of the city"/><br>
-                    <input type="button" id="getWeather" value="The current weather" onclick="getAPIdata(); getHourlyForecast(); getAPIdata2();"/>
+                    <input type="button" id="getWeather" value="The current weather"/>
                 </fieldset>
 	    	</form>
-            <br>
-            <article id="weather"> 
-            </article>
-            <br>
-            <article id="forecast">
-            </article>
-            <br>
-            <article id="sunRiseSet">
-        
-            </article>
         </section>
+            <br>
+        <article id="weather"></article>
+            <br>
+        <article id="forecast"></article>
+            <br>
+        <article id="sunRiseSet">
+        </article>
+        
+        
     </body>
 </html>
 
