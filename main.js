@@ -32,9 +32,9 @@ function onAPISucces(response) {
   
     var titel = "<h3 style='font-size: 18px'>Current weather for " + response.name + " , " + response.sys.country + "</h3>"
     
-    var icon = "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 40px; padding: 0px'>"
+    var icon = "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 40px; padding: 0px'>";
 
-    var weather ="<h4 style='padding-left: 10px'>Weather: " + response.weather[0].main + "</h4>";
+    var weather = "<h4 style='padding-left: 10px'>Weather: " + response.weather[0].main + "</h4>";
     
 	var type = "<h4 style='padding-left: 10px'>"+ response.weather[0].description + "</h4>";
 
@@ -120,56 +120,25 @@ function getForecast(response) {
 
     var forecastBox = document.getElementById('forecast');
     var forecastList = response.list;
-    
 	
 	for(var i=0; i< forecastList.length; i++){
      
         var dateTime = new Date(forecastList[i].dt_txt);
-		var date = formDate(dateTime);
-		var time = formTime(dateTime); 
-        //var icon = response.weather[0].icon; 
-        //var weather = response.weather[0].main;
-		var temp = 'Tempurate:' + Math.floor(forecastList[i].main.temp - 273.15);
-        var hum = 'Humidity:' + forecastList[i].main.humidity;
-        var feelsLike = 'Feels like:' + response.main.feels_like;
-    
-        
-        text = '<div class="forecastDiv">';
-        text +='<p class="date"> '+date+' </p>';
-        text +='<p class="time"> '+time+' </p>';
-        //text += '<p id="weatherIcon' +icon+'</p>';
-        //text += '<p id="weather' +weather+'</p>';         
-		text +='<p class="temp"> '+temp+'&#176;C </p>';
-        text +='<p class="hum"> '+hum+' %</p>';
-        text +='<p class="temp"> '+feelsLike+'&#176;C </p>';
-		text +='</div>';
-        
+        var icon =  "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+forecastList[i].weather[0].icon+".png' style=' width: 40px; padding: 0px'>";
+		var temp = Math.floor(forecastList[i].main.temp - 273.15);
+        var hum = forecastList[i].main.humidity;
 
-		forecastBox.innerHTML += text;     
-	}   
+        forecastMessage =  '<div class="forecastMoment">';
+        forecastMessage +=	 '<div class="time"> '+icon+' </div>';
+		forecastMessage +=	 '<div class="temp"> '+temp+'&#176;C </div>';
+        forecastMessage +=	 '<div class="time"> '+hum+' </div>';
+		forecastMessage += '</div>';
 
-}
-function formDate(date) {
-	var day = date.getDate();
-	var month = date.getMonth() + 1;
-	return day +' / '+ month;
-}
-
-/**
- * Format time
- */
-function formTime(time) {
-	var hours = date.getHours();
-	if(hours<10){
-		hours = '0'+hours;
+        forecastBox.innerHTML += forecastMessage;
+                   
 	}
-	var minutes = date.getMinutes();
-	if(minutes < 10){
-		minutes = '0'+ minutes;
-	}
-	return hours +':'+ minutes;
-}
 
+}
 
 /////////////////////////////////////////////////////////sunrise/sunset/////////////////////////////////////////////////////////////
 
