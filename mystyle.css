@@ -3,16 +3,8 @@
 }
 
 body{
-    position: relative;
-    overflow: hidden;
-    height: 100%;
+    box-sizing: border-box; 
     background-color: none;
-     background-image: url(background.jpg);    
-    -webkit-background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center center fixed;
-    height: 100%;
-    font-family: 'Courier Primar', Courier, monospace;
    
 }
 
@@ -158,13 +150,13 @@ input[type=button]:focus{
 /*Media queries for laptop scherm*/
 
 @media only screen and (min-width:1000px){
-    body{
+    /**body{
     box-sizing: border-box; 
     background-color: none;
      background-image: url(background.jpg);    
     -webkit-background-size: cover; 
     background-repeat: no-repeat;
-    background-position: center center fixed;
+    background-position: center center fixed;**/
     height: 100%;
     font-family: 'Courier Primar', Courier, monospace;
 }

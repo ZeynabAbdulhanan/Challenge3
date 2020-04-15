@@ -29,29 +29,48 @@ function getAPIdata() {
 }
 
 function onAPISucces(response) {
-    //titel
+  
     var titel = "<h3 style='font-size: 18px'>Current weather for " + response.name + " , " + response.sys.country + "</h3>"
+    
+    var icon = "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 40px; padding: 0px'>"
 
-    var weather = "<h4 style='padding-left: 10px'>Weather: " + response.weather[0].main + "</h4>";
-	
-    // get type of weather in string format with icon
-	var type = "<h4 style='padding-left: 10px'>Description: <img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 40px; padding: 0px'>"+ response.weather[0].description + "</h4>";
+    var weather ="<h4 style='padding-left: 10px'>Weather: " + response.weather[0].main + "</h4>";
+    
+	var type = "<h4 style='padding-left: 10px'>"+ response.weather[0].description + "</h4>";
 
-	// get temperature in Celcius
 	var degC = "<h4 style='padding-left: 10px'>Temperature: " + Math.floor(response.main.temp - 273.15) + "&#176;C </h4>";
-    
-    //get feels like
+
     var feelsLike = "<h4 style='padding-left: 10px'>Feel like: " + response.main.feels_like + "&deg;</h4>";
-    
-	//get humidity
+ 
     var hum = "<h4 style='padding-left: 10px'>Humidity: " + response.main.humidity + "%</h4>";
     
-    //get wind speed 
     var wind = "<h4 style='padding-left: 10px'>Wind speed: " + response.wind.speed + "m/s</h4>";
     
+	    
     // render weather in DOM
-	var weatherBox = document.getElementById('weather');
-	weatherBox.innerHTML = titel + weather + type + degC  + feelsLike + hum + wind;
+	var titelOf = document.getElementById('titel');
+	       titelOf.innerHTML = titel; 
+    
+    var iconOf = document.getElementById('weatherIcon');
+	       iconOf.innerHTML = icon;
+    
+    var weatherOf = document.getElementById('weather');
+	       weatherOf.innerHTML = weather;
+    
+    var typeOf = document.getElementById('titel');
+	       typeOf.innerHTML = type;
+    
+    var degCOf = document.getElementById('temp');
+	       degCOf.innerHTML = degC;
+    
+     var feelsLikeOf = document.getElementById('feelsLike');
+	       feelsLikeOf.innerHTML = feelsLike;
+    
+    var humOf = document.getElementById('hum');
+	       humOf.innerHTML = hum;
+    
+    var windOf = document.getElementById('windSpeed');
+	      windOf .innerHTML = wind;
 }
 
 function onAPIError(error) {
@@ -85,6 +104,7 @@ function getHourlyForecast() {
 	// render weather per day
 	.then(function(response) {
 		console.log(response);
+        console.log(weather); 
 		// render weatherCondition
 		getForecast(response);
 	})
@@ -104,39 +124,46 @@ function getForecast(response) {
 	for(var i=0; i< forecastList.length; i++){
      
         var dateTime = new Date(forecastList[i].dt_txt);
-        var titel = ''; 
-		var date = 'Date:' + dateTime.getDay() + '/' + dateTime.getMonth();
-		var timeHour = 'Time:'+ dateTime.getHours(); 
-        var timeMin = 'Time:' + dateTime.getMinutes();
+		var date = formDate(dateTime);
+		var time = formTime(dateTime); 
+        //var icon = response.weather[0].icon; 
+        //var weather = response.weather[0].main;
 		var temp = 'Tempurate:' + Math.floor(forecastList[i].main.temp - 273.15);
         var hum = 'Humidity:' + forecastList[i].main.humidity;
-        
-        //var weather = forecastList[i].weather[0].main
-        
-            //if (weather === "Rain") {
-                //var icon = "<a>'<i class="fas fa-cloud-rain"></i>';
-            //else if (weather === "Clouds") {
-                //var icon = '<i class="fas fa-cloud"></i>';
-            //} 
-            //else if (weather === "Clear") {
-                //var icon = '<i class="fas fa-cloud-sun"></i>';
-            //}
-            //else if (weather === "Snow") {
-                //var icon = '<i class="far fa-snowflake"></i>';
-            //}
+        var feelsLike = 'Feels like:' + response.main.feels_like;
+    
         
         text = '<div class="forecastDiv">';
-        text += '<p class="titelDiv"> '+titel+'</p>';
-        //text += '<img class="weather' +weather+'>';         
         text +='<p class="date"> '+date+' </p>';
-		text +='<p class="timeHour"> '+timeHour+'</p>'; text += '<p class="timeMin">'+timeMin+'</p>';
+        text +='<p class="time"> '+time+' </p>';
+        //text += '<p id="weatherIcon' +icon+'</p>';
+        //text += '<p id="weather' +weather+'</p>';         
 		text +='<p class="temp"> '+temp+'&#176;C </p>';
         text +='<p class="hum"> '+hum+' %</p>';
+        text +='<p class="temp"> '+feelsLike+'&#176;C </p>';
 		text +='</div>';
+        
 
-		forecastBox.innerHTML += text;
+		forecastBox.innerHTML += text;     
 	}
 
+}
+function formDate(date) {
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	return day +' / '+ month;
+}
+
+function formTime(date) {
+	var hours = date.getHours();
+	if(hours<10){
+		hours = '0'+hours;
+	}
+	var minutes = date.getMinutes();
+	if(minutes < 10){
+		minutes = '0'+ minutes;
+	}
+	return hours +':'+ minutes;
 }
 
 /////////////////////////////////////////////////////////sunrise/sunset/////////////////////////////////////////////////////////////
@@ -183,25 +210,9 @@ function sunRiseSetTimes(jsonData) {
     }
     
     
-        sunRiseSet.innerHTML = text.data.sunrise + text.data.sunset + text.data.lat + text.data.lng;
+        sunRiseSet.innerHTML = text.data[0].sunrise + text.data[0].sunset;
     
-    
-	//var weatherBox = document.getElementById('sunRiseSet');
-	//weatherBox.innerHTML = sunrise + sunset;
 }
-
-//function showSunRiseSet(){
-    //var text = '{"results":[' +
-              // '{"sunrise":"7:27:02 AM","sunset":"5:05:55 PM" },' +
-               //'{"sunrise":"7:27:05 AM","sunset":"5:05:55 PM" },' +
-               //'{"firstName":"Peter","lastName":"Jones" }]}';
-
-//obj = JSON.parse(text);
-//document.getElementById("sunRiseSet").innerHTML =
-//obj.results[1].sunrise + " " + obj.results[1].sunset;
-
-//}
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 document.getElementById('getWeather').onclick = function(){
