@@ -120,6 +120,7 @@ function getForecast(response) {
 
     var forecastBox = document.getElementById('forecast');
     var forecastList = response.list;
+    
 	
 	for(var i=0; i< forecastList.length; i++){
      
@@ -145,7 +146,7 @@ function getForecast(response) {
         
 
 		forecastBox.innerHTML += text;     
-	}
+	}   
 
 }
 function formDate(date) {
@@ -154,7 +155,10 @@ function formDate(date) {
 	return day +' / '+ month;
 }
 
-function formTime(date) {
+/**
+ * Format time
+ */
+function formTime(time) {
 	var hours = date.getHours();
 	if(hours<10){
 		hours = '0'+hours;
@@ -165,6 +169,7 @@ function formTime(date) {
 	}
 	return hours +':'+ minutes;
 }
+
 
 /////////////////////////////////////////////////////////sunrise/sunset/////////////////////////////////////////////////////////////
 
