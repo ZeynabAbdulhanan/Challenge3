@@ -124,6 +124,9 @@ input[type=button]:focus{
     border-radius: 10px;**/
 }
 
+.forecastMoment{
+    border: 1px solid red;
+}
 @media only screen and (min-width:600px){
     
 }

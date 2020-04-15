@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 		<link type="text/css" href="mystyle.css" rel="stylesheet"/>  
         <script src="https://kit.fontawesome.com/bd9010d42c.js" crossorigin="anonymous"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
         <script src="main.js" defer></script>
 	</head>
     <body>
@@ -47,8 +48,19 @@
         </article>
         <br>
         <article id="sunRiseSet">
+            <div id="sunrise">
+               <br>        
+            </div>
+            <div id="sunset">
+               <br>
+            </div>
+            <div id="daylength">
+                <br>
+            </div>
         </article>
-        
+        <article>
+            <div id="map"></div>
+        </article>
         <footer class="footer">
             <p>
                 &copy;2020 -<small>SpaceX</small><br/>
