@@ -286,7 +286,6 @@ document.getElementById('getWeather').onclick = function(){
     getAPIdata();
     getHourlyForecast();
     showSunRiseSet();
-    mySecondChart
     plotImageOnMap();
 }
 
