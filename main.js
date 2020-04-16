@@ -30,11 +30,11 @@ function getAPIdata() {
 
 function onAPISucces(response) {
   
-    var titel = "<h3 style='font-size: 18px'>Current weather for " + response.name + " , " + response.sys.country + "</h3>"
+    var titel = "<h3 style='font-size: 20px'>" + response.name + " , " + response.sys.country + "</h3>"
     
     var icon = "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 40px; padding: 0px'>";
 
-    var weather = "<h4 style='padding-left: 10px'>Weather: " + response.weather[0].main + "</h4>";
+    var weather = "<h4 style='padding-left: 10px; border: 1px solid red>Weather: " + response.weather[0].main + "</h4>";
     
 	var type = "<h4 style='padding-left: 10px'>"+ response.weather[0].description + "</h4>";
 
@@ -48,7 +48,7 @@ function onAPISucces(response) {
     
 	    
     // render weather in DOM
-	var titelOf = document.getElementById('titel');
+    var titelOf = document.getElementById('titel');
 	       titelOf.innerHTML = titel; 
     
     var iconOf = document.getElementById('weatherIcon');
@@ -57,7 +57,7 @@ function onAPISucces(response) {
     var weatherOf = document.getElementById('weather');
 	       weatherOf.innerHTML = weather;
     
-    var typeOf = document.getElementById('titel');
+    var typeOf = document.getElementById('type');
 	       typeOf.innerHTML = type;
     
     var degCOf = document.getElementById('temp');
@@ -76,7 +76,7 @@ function onAPISucces(response) {
 function onAPIError(error) {
     var weatherBox = document.getElementById('weather');
     var city = document.getElementById('city');
-	weatherBox.innerHTML = 'No weather data available <br /> Did you enter a valid city?'; 
+	weatherBox.innerHTML = 'Geen weergegevens beschikbaar <br /> Heeft u een geldige stad ingevoerd?'; 
     weatherBox.style.borderColor = "red";
     city.style.borderColor = "red";
 }
@@ -124,18 +124,17 @@ function getForecast(response) {
 	for(var i=0; i< forecastList.length; i++){
      
         var dateTime = new Date(forecastList[i].dt_txt);
-        var icon =  "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+forecastList[i].weather[0].icon+".png' style=' width: 40px; padding: 0px'>";
+        var iconForecast =  "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+forecastList[i].weather[0].icon+".png' style=' width: 40px; padding: 0px'>";
 		var temp = Math.floor(forecastList[i].main.temp - 273.15);
         var hum = forecastList[i].main.humidity;
 
         forecastMessage =  '<div class="forecastMoment">';
-        forecastMessage +=	 '<div class="time"> '+icon+' </div>';
-		forecastMessage +=	 '<div class="temp"> '+temp+'&#176;C </div>';
-        forecastMessage +=	 '<div class="time"> '+hum+' </div>';
+        forecastMessage +=	 '<div class="slide" class="icon"> '+iconForecast +' </div>';
+		forecastMessage +=	 '<div  class="slide" class="temp"> '+temp+'&#176;C </div>';
+        forecastMessage +=	 '<div  class="slide" class="time"> '+hum+' </div>';
 		forecastMessage += '</div>';
 
-        forecastBox.innerHTML += forecastMessage;
-                   
+        forecastBox.innerHTML += forecastMessage;                   
 	}
 
 }
@@ -222,7 +221,9 @@ var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/outdoors-v11',
   center: [5.508852, 52.142480],
-  zoom: 7
+  zoom: 7,
+  petch:45
+    
 });
 
 
@@ -285,5 +286,9 @@ function plotImageOnMap(icon, city) {
 document.getElementById('getWeather').onclick = function(){
     getAPIdata();
     getHourlyForecast();
-    showSunRiseSet();   
+    showSunRiseSet();
+    plotImageOnMap();
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 

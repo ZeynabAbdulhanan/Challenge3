@@ -1,56 +1,39 @@
-body{
-    box-sizing: border-box; 
-    background-color: none;
+*{
+  box-sizing: border-box;   
+}
+
+body{ 
+    background-color: #669cd3;
    
 }
 
-.logo{
-    background-color: #0a9fe8;
+header{
     width: auto;
-    height: 0 auto;
-    border-bottom: solid 1px #098fd0; 
+    height: auto;
     margin: 5px;
     padding: 5px;
 }
 
-
-.icon{
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    background: none;
-    margin: 4px;
-    color: #e6f5fc;
-    position: relative;
-}
-
-.icon i{
-    line-height: 80px;
-    font-size: 32px;
-}
-
-.icon:hover i{
-    transform: scale(1.5);
-    color: #b5e2f8;
-}
-
-.logo h2{
+header h1{
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
     color: white;
-    display: inline-block;
 }
 
-legend{
-    font-size: 18px;
+header h3{
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-left: 0px;
+    color: white;
 }
 
-fieldset{
-    background-color: #f3f3f3;
-    width: auto;
-    height: auto; 
-    margin: 5px;
-    padding: 20px;
-    border-radius: 20px;
-    border-color: #b5e2f8;
+.titel{
+    color: #333333;
+    padding: 2px;
+    margin: 2px;
 }
 
 
@@ -60,18 +43,20 @@ input{
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 30px;
     box-sizing: border-box;
 }
 
 input[type=text]:hover{
-    border-color: #b5e2f8; 
+    border: 1px solid #b5e2f8; 
+    border-radius: 20px;
     
 }
 
 input[type=text]:focus{
     border: 2px solid white;
     border-radius: 4px;
+    border-radius: 20px;
     
 }
 
@@ -81,52 +66,180 @@ input[type=button] {
     padding: 14px 20px;
     margin: 8px 0;
     border: 1px solid #098fd0;
-    border-radius: 4px;
+    border-radius: 30px;
     cursor: pointer;
 }
 
 input[type=button]:hover {
     background-color: #b5e2f8; 
     border-color: #098fd0;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 input[type=button]:focus{
     border: 2px solid white;
-    border-radius: 4px;
+    border-radius: 20px;
     
 }
 
-#weather {
-	background-color:none;
-	width: 0 auto;
-    height: 0 auto;
-	padding: 15px;
-    margin: 5px;
-	text-align: left;
-    overflow: hidden;
-    letter-spacing: 0.5px;
-    /**border: 1px solid #b5e2f8;
-    border-radius: 10px;**/
+article{
+    margin: 2px;
+    padding: 10px;
 }
 
+article h2{
+    color: #333333;
+}
 
-#sunRiseSet{
-    background-color:none;
-	width: 0 auto;
-    height: 0 auto;
-	padding: 15px;
-    margin: 5px;
-	text-align: left;
-    overflow: hidden;
-    letter-spacing: 0.5px;
-    /**border: 1px solid #b5e2f8;
-    border-radius: 10px;**/
+#showWeather div{
+    margin: 2px;
+    padding: 5px;
+    border-bottom: 1px solid #b5e2f8;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 .forecastMoment{
-    border: 1px solid red;
+    border: 1px solid #b5e2f8;
+    border-radius: 20px;
+    width: 60px;
+    height: 150px;
+    margin: 0px;
+    padding: 1px;
+    display: table-cell;
+    justify-content: center;
+    text-align: center;   
+     overflow: hidden;
+    position: relative;
+    animation: 60s slider infinite;
 }
+
+@keyframes slider {
+    0%{
+        left:0;
+    }
+    10%{
+        left:0;
+    }
+    12%{
+        left:-10%;
+    }
+    22%{
+        left: -10%;
+    }
+    24%{
+        left: -20%;
+    }
+    34%{
+        left:-20%;
+    }
+    36%{
+        left: -30%;
+    }
+    46%{
+        left:-30%;
+    }
+    58%{
+        left:-40%;
+    }
+    60%{
+        left: -30%;
+    }
+    70%{
+        left: -30%;
+    }
+    72%{
+        left: -20%;
+    }
+    82%{
+        left: -20%;
+    }
+    84%{
+        left: -10%;
+    }
+    94%{
+        left: -10%;
+    }
+    96%{
+        left: 0%;
+    }
+}
+
+
+
+.cardBox{
+    display: inline;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+}
+
+.myCard{
+    background: #fff;
+    padding: 5px 5px;
+    margin: 10px 20px;
+    height: 120px;
+    align-items: center;
+}
+
+.myCard:hover .card-icon{
+    background: none;
+    color: #ff6348;
+    transform: scale(1.6);
+}
+
+/*Tweede card*/
+.myCard1{
+    background: #fff;
+    padding: 5px 5px;
+    margin: 10px 20px;
+    height: 120px;
+    align-items: center;
+    color: black;
+}
+
+.myCard1:hover .card-icon{
+    background: none;
+    color: #ff6348;
+    transform: scale(1.6);
+}
+
+
+/*derde card*/
+.myCard2{
+    background: #fff;
+    padding: 5px 5px;
+    margin: 10px 20px;
+    height: 120px;
+    align-items: center;
+    color: black;
+}
+
+.myCard2:hover .card-icon{
+    background: none;
+    color: #ff6348;
+    transform: scale(1.6);
+}
+
+/*derde card*/
+.myCard3{
+    background: #fff;
+    padding: 5px 5px;
+    margin: 10px 20px;
+    height: 120px;
+    align-items: center;
+    color: black;
+}
+
+.myCard3:hover .card-icon{
+    background: none;
+    color: #ff6348;
+    transform: scale(1.6);
+}
+
+
+
 @media only screen and (min-width:600px){
     
 }
