@@ -11,7 +11,6 @@
         <script src="main.js" defer></script>
 	</head>
     <body>
-        <div class="background-img">
         <section class="grid_container">
             <header>
                 <div class="logo">
@@ -20,12 +19,12 @@
                 </div>
             </header>
             <br>
-            <h2 class="titel">Zoek naar een stad!</h2>
+            
 		    <form action="/" method="get" id="form" class="searchBox">
+                    <h2 class="titel">Zoek naar een stad!</h2>
                     <input type="text" name="Stad" id="city" placeholder= "Type hier de naam van de stad" required/>
                     <input type="button" id="getWeather" value="Geef weer"/>
 	    	</form>
-        </section>
         <br><br>
         <article id="showWeather">
             <h2>Het weer nu in</h2>
@@ -61,41 +60,31 @@
             <div class="cardBox">
                 <div class="box" class="travel">
                     <div class="content">
-                        <h2>Vluchten</h2>
-                        <h2>Zoek<i class="fas fa-arrow-right"></i></h2>
+                        <p>Vluchten</p>
+                        <h2 class="corw"><i class="fas fa-arrow-right"></i></h2>
                     </div>    
                 </div>
                 <div class="box" class="medical">
                     <div class="content">
-                        <h2>Huisartsen</h2>
-                        <h2>Zoek<i class="fas fa-arrow-right"></i></h2>
+                        <p>Huisartsen</p>
+                        <h2><i class="fas fa-arrow-right"></i></h2>
                     </div>
                 </div>
                 <div class="box" class="hotels">
                     <div class="content">
-                        <h2>Hotels</h2>
-                        <h2>Zoek<i class="fas fa-arrow-right"></i></h2>
+                        <p>Hotels</p>
+                        <h2><i class="fas fa-arrow-right"></i></h2>
                     </div>
                 </div>
                 <div class="box" class="uber">
                     <div class="content">
-                        <h2>Openbare vervoer</h2>
-                        <h2>Zoek<i class="fas fa-arrow-right"></i></h2>
+                        <p>Openbare vervoer</p>
+                        <h2><i class="fas fa-arrow-right"></i></h2>
                     </div>
                 </div>
             </div>
         </article>    
-        <footer class="footer">
-            <p>
-                &copy;2020 -<small>SpaceX</small><br/>
-                <small>In opdracht van de HHS - Zeynab Abdulhanan</small>
-            </p>
-            <div class="shareIcon">
-                <i class="far fa-share-square"></i>
-            </div>
-            
-        </footer>
-        </div>    
+        </section>
     </body>
 </html>
 

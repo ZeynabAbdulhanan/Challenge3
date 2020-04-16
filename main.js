@@ -30,21 +30,21 @@ function getAPIdata() {
 
 function onAPISucces(response) {
   
-    var titel = "<h3 style='font-size: 20px'>" + response.name + " , " + response.sys.country + "</h3>"
+    var titel = "<h3 style='font-size: 25px; width:auto; margin: 5px; padding: 10px; padding-left: 10px;'>" + response.name + " , " + response.sys.country + "</h3>"
     
-    var icon = "<h4 style='padding-left: 10px'><img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 40px; padding: 0px'>";
+    var icon = "<h4 style='width:auto; margin: 5px; padding: 10px; padding-left: 10px;'><img src='http://openweathermap.org/img/w/"+response.weather[0].icon+".png' style=' width: 150px; padding: 10px'>";
 
-    var weather = "<h4 style='padding-left: 10px; border: 1px solid red>Weather: " + response.weather[0].main + "</h4>";
+    var weather = "<div style='width:auto; margin: 5px; padding: 10px; padding-left: 10px; border-bottom: 1px solid #b5e2f8;'>Het weer: " + response.weather[0].main + "</div>";
     
-	var type = "<h4 style='padding-left: 10px'>"+ response.weather[0].description + "</h4>";
+	var type = "<div style='width:auto; margin: 5px; padding: 10px; padding-left: 10px; border-bottom: 1px solid #b5e2f8;'>"+ response.weather[0].description + "</div>";
 
-	var degC = "<h4 style='padding-left: 10px'>Temperature: " + Math.floor(response.main.temp - 273.15) + "&#176;C </h4>";
+	var degC = "<div style='width:auto; margin: 5px; padding: 10px; padding-left: 10px; border-bottom: 1px solid #b5e2f8;'>Temperatuur: " + Math.floor(response.main.temp - 273.15) + "&#176;C </div>";
 
-    var feelsLike = "<h4 style='padding-left: 10px'>Feel like: " + response.main.feels_like + "&deg;</h4>";
+    var feelsLike = "<div style='width:auto; margin: 5px; padding: 10px; padding-left: 10px; border-bottom: 1px solid #b5e2f8;'>Voelt als: " + response.main.feels_like + "&deg;</div>";
  
-    var hum = "<h4 style='padding-left: 10px'>Humidity: " + response.main.humidity + "%</h4>";
+    var hum = "<div style='width:auto; margin: 5px; padding: 10px; padding-left: 10px; border-bottom: 1px solid #b5e2f8;'>Vochtigheid: " + response.main.humidity + "%</div>";
     
-    var wind = "<h4 style='padding-left: 10px'>Wind speed: " + response.wind.speed + "m/s</h4>";
+    var wind = "<div style='width:auto; margin: 5px; padding: 10px; padding-left: 10px; border-bottom: 1px solid #b5e2f8;'>Windsnelheid: " + response.wind.speed + "m/s</div>";
     
 	    
     // render weather in DOM

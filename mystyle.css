@@ -94,7 +94,7 @@ article h2{
 #showWeather div{
     margin: 2px;
     padding: 5px;
-    border-bottom: 1px solid #b5e2f8;
+    /**border-bottom: 1px solid #b5e2f8;**/
     font-size: 18px;
     letter-spacing: 1px;
 }
@@ -199,22 +199,63 @@ article h2{
 }
 
 .cardBox .box{
-    padding: 5px;
-    margin: 5px;
+    padding: 1px;
+    margin: 0px;
     border-bottom: 1px solid gray;
 }
 
-.content h2{
-    font-size: 20px;
-    font-weight: lighter;
-    letter-spacing: 0.5px;
-    display: inline-block;
-    padding-right: 40px;
+.cardBox .content{
+    display: table-cell;
 }
 
-
 @media only screen and (min-width:600px){
+    .grid_container{
+        width: 100%;
+        display:grid; 
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: minmax(100px, auto);    
+        grid-column-gap: 5px;
+        grid-row-gap: 5px;
+        justify-items: center;
+        align-items: center;    
+    }
     
+    .header{
+        grid-column: 1;
+        grid-row: 1;
+        margin: 0px; 
+        padding: 0px;
+    }
+    
+    #form{
+        grid-column: 1;
+        grid-row: 2;
+        padding: 10px;
+    }
+    
+    #showWeather{
+        grid-column:1;
+        grid-row: 3;
+    }
+    
+    #forecast{
+        grid-column: 1;
+        grid-row: 4;
+    }
+    
+    #sunRiseSet{
+        grid-column: 1;
+        grid-row: 5;
+    }
+    
+    #map{
+        grid-column: 1;
+        grid-row: 6;
+    }
+    #landen{
+        grid-column: 1;
+        grid-row: 7;
+    }
 }
 
 /*eind van laptopscherm*/
