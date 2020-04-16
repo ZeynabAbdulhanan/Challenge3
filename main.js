@@ -166,9 +166,9 @@ function sunRiseSetTimes(jsonData) {
     var text = {
         "data": [
         {
-            "sunrise": "5:05:55 AM </br> <img src='sunrise-100px.svg' class='sunrise' style='width: 40px; padding: 0px'>",
-            "sunset": "5:05:55 PM </br> <img src='sunset-100px.svg' class='sunset' style=' width: 40px; padding: 0px'>",
-            "day_length": "13:10:31",
+            "sunrise": "<img src='sunrise-100px.svg' class='sunrise' style='width: 120px; height: 80px; padding: 10px; margin: 10px;'></br> <p><small>Zonsopgang tijd</small></p> <p>6:25:55 AM</p>",
+            "sunset": "<img src='sunset-100px.svg' class='sunset' style='width: 120px; height: 80px; padding: 10px; margin: 10px; text-align:center;'> </br> <p><small>Zonsondergang tijd</small></p> 8:41:55 PM",
+            "day_length": "</br> Dag lengte: 13:10:31 uur </br> <p style='font-size: 18px; color: #c2c2c2;'><small>Morgen zal 3 minuten langer zijn dan vandaag</small></p>",
         
         }]
     }
@@ -178,8 +178,7 @@ function sunRiseSetTimes(jsonData) {
     
     //sunRiseSet.innerHTML = text.data[0].sunrise +'</br>'+ text.data[0].sunset +'</br>' + text.data[0].day_length;
 }
-
-
+            
 //////////////////////////////////////////////////////map/////////////////////////////////////////////////////////////////////////
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiemV5bmFiYWJkdWxoYW5hbiIsImEiOiJjazkxdjg0ZTcwMWt3M2xtcnk1aDFybHM4In0.7yRO7RB895NjzcHXZNuA7g';
@@ -287,6 +286,7 @@ document.getElementById('getWeather').onclick = function(){
     getAPIdata();
     getHourlyForecast();
     showSunRiseSet();
+    mySecondChart
     plotImageOnMap();
 }
 

@@ -165,79 +165,52 @@ article h2{
     }
 }
 
+#sunrise{
+    font-size: 18px;
+    border: 1px solid none;
+    padding: 5px;
+    text-align: center;
+}
 
+#sunset{
+    font-size: 18px;
+    border: 1px solid none;
+    padding: 5px; 
+    text-align: center;
+}
+
+#daylength{
+    font-size: 18px;
+    border: 1px solid none;
+    padding: 5px; 
+    text-align: center;
+}
+
+#map{
+    width: auto;
+    height: 400px; 
+    
+    
+}
 
 .cardBox{
-    display: inline;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 0px;
+    padding: 5px;
+    margin: 5px;
 }
 
-.myCard{
-    background: #fff;
-    padding: 5px 5px;
-    margin: 10px 20px;
-    height: 120px;
-    align-items: center;
+.cardBox .box{
+    padding: 5px;
+    margin: 5px;
+    border-bottom: 1px solid gray;
 }
 
-.myCard:hover .card-icon{
-    background: none;
-    color: #ff6348;
-    transform: scale(1.6);
+.content h2{
+    font-size: 20px;
+    font-weight: lighter;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    padding-right: 40px;
 }
-
-/*Tweede card*/
-.myCard1{
-    background: #fff;
-    padding: 5px 5px;
-    margin: 10px 20px;
-    height: 120px;
-    align-items: center;
-    color: black;
-}
-
-.myCard1:hover .card-icon{
-    background: none;
-    color: #ff6348;
-    transform: scale(1.6);
-}
-
-
-/*derde card*/
-.myCard2{
-    background: #fff;
-    padding: 5px 5px;
-    margin: 10px 20px;
-    height: 120px;
-    align-items: center;
-    color: black;
-}
-
-.myCard2:hover .card-icon{
-    background: none;
-    color: #ff6348;
-    transform: scale(1.6);
-}
-
-/*derde card*/
-.myCard3{
-    background: #fff;
-    padding: 5px 5px;
-    margin: 10px 20px;
-    height: 120px;
-    align-items: center;
-    color: black;
-}
-
-.myCard3:hover .card-icon{
-    background: none;
-    color: #ff6348;
-    transform: scale(1.6);
-}
-
 
 
 @media only screen and (min-width:600px){
